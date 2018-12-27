@@ -9,7 +9,7 @@ try:
     pkgs = find_packages()
 except ImportError:
     from distutils.core import setup
-    pkgs = ['libfioparser']
+    pkgs = ['fioparse', 'libfioparser']
 
 try:
     from pip.req import parse_requirements
