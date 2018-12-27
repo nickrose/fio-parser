@@ -3,6 +3,7 @@
 # See https://packaging.python.org/distributing/
 # and https://github.com/pypa/sampleproject/blob/master/setup.py
 
+__version__ = '0.0.1'
 try:
     from setuptools import setup, find_packages
     pkgs = find_packages()
@@ -21,7 +22,7 @@ with open('README.md') as f:
         readme = f.read()
 
 setup(name='fioparser',
-      # version=__version__,
+      version=__version__,
       description=('FIO test result parsing'),
       # author=__author__,
       # author_email=__email__,
@@ -38,4 +39,4 @@ setup(name='fioparser',
           'Programming Language :: Python :: 3.5',
           'Programming Language :: Python :: 3.6'
       ],
-      )
+)

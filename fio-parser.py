@@ -17,7 +17,7 @@
 #
 # fio-parser
 #
-# run fio with --minimal 
+# run fio with --minimal
 
 import sys
 import getopt
@@ -29,62 +29,62 @@ from libfioparser.TestSuite import TestSuite
 This function prints results.
 Change it for whatever you want to see.
 """
+
+
 def parse(jobs):
 
-	# print the layout
-	print "iodepth\t%s\t%s\t%s" % (
-			"read","write", "cpu_user"
-		)
-	
-	for job_name in jobs:
-		job = jobs[job_name]
+    # print the layout
+    print("iodepth\t%s\t%s\t%s" % (
+        "read", "write", "cpu_user"
+    ))
 
-		# parse the name of the job
-		name_split = re.split("-", job.name)
-		# and print just jobs that starts with "multi-" prefix
-		if (name_split[1] == "multi"):
-			print "%s\t%d\t%d\t%s" % (
-					name_split[4],
-					int(job.read_status.bandwidth.med()),
-					int(job.write_status.bandwidth.med()),
-					job.cpu_usage.user[0]
-				)
+    for job_name in jobs:
+        job = jobs[job_name]
+
+        # parse the name of the job
+        name_split = re.split("-", job.name)
+        # and print just jobs that starts with "multi-" prefix
+        if (name_split[1] == "multi"):
+            print("%s\t%d\t%d\t%s" % (
+                name_split[4],
+                int(job.read_status.bandwidth.med()),
+                int(job.write_status.bandwidth.med()),
+                job.cpu_usage.user[0]
+            ))
 
 #
-#------------- End of the parse() function ---------------
+# ------------- End of the parse() function ---------------
 #
-
-
 
 
 def print_help():
-	print "%s [-h] [-i|--input FILENAME]" % (sys.argv[0])
+    print("%s [-h] [-i|--input FILENAME]" % (sys.argv[0]))
 
 
 def main(argv):
-	
-	instream = None
 
-	try:
-		opts, args = getopt.getopt(argv,"hi:", ["input="])
-	except getopt.GetoptError:
-		print_help()
-		sys.exit(2)
+    instream = None
 
-	for opt, arg in opts:
-		if (opt == '-h'):
-			print_help()
-			sys.exit()
-		elif (opt in ("-i","--input")):
-			instream = open(arg)
-	
-	if (instream is None):
-		instream = fileinput.input()
+    try:
+        opts, args = getopt.getopt(argv, "hi:", ["input="])
+    except getopt.GetoptError:
+        print_help()
+        sys.exit(2)
 
-	# parse the data
-	ts = TestSuite(instream)
-	parse(ts.get_all())
+    for opt, arg in opts:
+        if (opt == '-h'):
+            print_help()
+            sys.exit()
+        elif (opt in ("-i", "--input")):
+            instream = open(arg)
+
+    if (instream is None):
+        instream = fileinput.input()
+
+    # parse the data
+    ts = TestSuite(instream)
+    parse(ts.get_all())
 
 
 if __name__ == "__main__":
-	main(sys.argv[1:])
+    main(sys.argv[1:])
