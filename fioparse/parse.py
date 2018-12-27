@@ -52,6 +52,22 @@ def parse(jobs):
                 job.cpu_usage.user[0]
             ))
 
+
+def parse_fio_file(file):
+    """
+        print fio data structure information parsed from input file
+
+        Args:
+            file (str): url of fio results file to parse.
+
+        Returns: n/a
+    """
+    with open(file, 'r') as f:
+        # parse the data
+        ts = TestSuite(f)
+        parse(ts.get_all())
+
+
 #
 # ------------- End of the parse() function ---------------
 #
@@ -86,5 +102,5 @@ def main(argv):
     parse(ts.get_all())
 
 
-if __name__ == "__main__":
-    main(sys.argv[1:])
+# if __name__ == "__main__":
+#     main(sys.argv[1:])

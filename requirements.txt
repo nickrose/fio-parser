@@ -1,2 +1,2 @@
 numpy
-hurry
+hurry.filesize

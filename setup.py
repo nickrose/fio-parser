@@ -16,7 +16,7 @@ try:
     install_reqs = parse_requirements('./requirements.txt')
     reqs = [str(ir.req) for ir in install_reqs]
 except ImportError:
-    reqs = ['numpy', 'hurry']
+    reqs = ['numpy', 'hurry.filesize']
 
 with open('README.md') as f:
         readme = f.read()
